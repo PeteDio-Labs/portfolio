@@ -1,0 +1,228 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light is supported but the site defaults to dark — 2026 Apple keynote vibe */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 221 83% 53%;
+    --accent-foreground: 0 0% 100%;
+    --primary: 222 47% 11%;
+    --primary-foreground: 0 0% 100%;
+    --border: 214 32% 91%;
+    --radius: 1rem;
+  }
+
+  .dark {
+    /* Apple-inspired dark canvas */
+    --background: 240 12% 4%;
+    --foreground: 0 0% 98%;
+    --muted: 240 5% 14%;
+    --muted-foreground: 240 5% 70%;
+    --accent: 221 90% 64%;
+    --accent-foreground: 0 0% 100%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 10% 4%;
+    --border: 240 5% 20%;
+    --radius: 1.25rem;
+
+    /* Glass Material System (rgb tuples for rgba()) */
+    --glass-surface: 22 22 28;
+    --glass-border: 255 255 255;
+    --glass-shadow: 0 0 0;
+    --glass-highlight: 180 200 255;
+  }
+
+  html {
+    background-color: hsl(var(--background));
+    min-height: 100%;
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI',
+      Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100svh;
+    overflow-x: hidden;
+    letter-spacing: -0.01em;
+  }
+
+  h1, h2, h3, h4 {
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: hsl(var(--foreground));
+  }
+
+  ::selection {
+    background: rgba(124, 92, 255, 0.35);
+    color: white;
+  }
+}
+
+@layer components {
+  /* Apple Liquid Glass — primary surface */
+  .glass {
+    background: rgba(var(--glass-surface), 0.55);
+    backdrop-filter: blur(40px) saturate(1.8);
+    -webkit-backdrop-filter: blur(40px) saturate(1.8);
+    border: 1px solid rgba(var(--glass-border), 0.10);
+    box-shadow:
+      0 8px 32px 0 rgba(var(--glass-shadow), 0.45),
+      inset 0 1px 0 0 rgba(var(--glass-border), 0.12),
+      inset 0 -1px 0 0 rgba(var(--glass-shadow), 0.30);
+  }
+
+  .glass-card {
+    @apply glass rounded-3xl;
+  }
+
+  .glass-panel {
+    @apply glass rounded-2xl;
+    background: rgba(var(--glass-surface), 0.65);
+    backdrop-filter: blur(30px) saturate(1.5);
+    -webkit-backdrop-filter: blur(30px) saturate(1.5);
+  }
+
+  .glass-nav {
+    @apply glass;
+    background: rgba(var(--glass-surface), 0.55);
+    backdrop-filter: blur(28px) saturate(1.8);
+    -webkit-backdrop-filter: blur(28px) saturate(1.8);
+    border-radius: 999px;
+  }
+
+  .glass-chip {
+    background: rgba(var(--glass-surface), 0.6);
+    backdrop-filter: blur(20px) saturate(1.5);
+    -webkit-backdrop-filter: blur(20px) saturate(1.5);
+    border: 1px solid rgba(var(--glass-border), 0.10);
+    border-radius: 999px;
+  }
+
+  /* Specular highlight on hover */
+  .glass-card-hover {
+    @apply transition-all duration-500;
+    position: relative;
+  }
+  .glass-card-hover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(
+      600px circle at var(--mx, 50%) var(--my, 0%),
+      rgba(var(--glass-highlight), 0.10),
+      transparent 45%
+    );
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+  .glass-card-hover:hover::before {
+    opacity: 1;
+  }
+  .glass-card-hover:hover {
+    transform: translateY(-2px);
+    border-color: rgba(var(--glass-border), 0.18);
+  }
+
+  /* Accessibility */
+  @media (prefers-reduced-transparency: reduce) {
+    .glass, .glass-card, .glass-panel, .glass-nav, .glass-chip {
+      background: rgba(var(--glass-surface), 0.95);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Aurora — fixed background gradients that bleed through glass */
+  .aurora {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    background:
+      radial-gradient(at 0% 0%, hsla(265, 90%, 40%, 0.45) 0px, transparent 50%),
+      radial-gradient(at 95% 10%, hsla(210, 90%, 50%, 0.35) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, hsla(180, 80%, 45%, 0.30) 0px, transparent 50%),
+      linear-gradient(135deg, hsl(240 14% 5%) 0%, hsl(240 18% 7%) 50%, hsl(240 14% 5%) 100%);
+  }
+  .aurora::before, .aurora::after {
+    content: '';
+    position: absolute;
+    width: 60vmax;
+    height: 60vmax;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.55;
+    will-change: transform;
+  }
+  .aurora::before {
+    top: -20%;
+    left: -15%;
+    background: radial-gradient(circle, hsla(265, 95%, 55%, 0.55), transparent 60%);
+    animation: aurora-drift 22s ease-in-out infinite;
+  }
+  .aurora::after {
+    bottom: -25%;
+    right: -20%;
+    background: radial-gradient(circle, hsla(190, 95%, 55%, 0.50), transparent 60%);
+    animation: aurora-drift 28s ease-in-out infinite reverse;
+  }
+
+  .grain {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.04;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.7'/></svg>");
+  }
+
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+
+  .text-gradient {
+    background: linear-gradient(120deg, #ffffff 0%, #d8e6ff 35%, #9bb5ff 70%, #c4a5ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-gradient-accent {
+    background: linear-gradient(120deg, #7c5cff 0%, #3a8dff 50%, #22d3ee 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .ring-glow {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.08),
+      0 20px 60px -20px rgba(124, 92, 255, 0.35),
+      0 0 80px -10px rgba(58, 141, 255, 0.20);
+  }
+}

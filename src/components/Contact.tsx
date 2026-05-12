@@ -21,8 +21,8 @@ const LINKS = [
   },
   {
     label: 'LinkedIn',
-    sub: 'in/pedelgadillo',
-    href: 'https://www.linkedin.com/in/pedelgadillo',
+    sub: 'in/petedillo',
+    href: 'https://www.linkedin.com/in/petedillo/',
     Icon: Linkedin,
   },
 ];

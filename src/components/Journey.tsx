@@ -22,10 +22,10 @@ const MILESTONES: Milestone[] = [
   },
   {
     when: 'Foundation',
-    title: 'Computer Science',
-    where: 'University',
+    title: 'Web Development',
+    where: 'College',
     description:
-      'Backfilled the formal CS — data structures, systems, distributed computing — so the patterns I was using in production had names and tradeoffs I could reason about.',
+      'Formalized the craft — HTML/CSS/JS deeply, real backend fundamentals, the shape of a production web app. Left with a portfolio of shipped projects and the confidence to take on contract work.',
     Icon: GraduationCap,
     accent: 'from-sky-400/40 to-indigo-500/20',
   },

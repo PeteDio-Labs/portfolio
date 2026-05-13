@@ -30,7 +30,7 @@ const MILESTONES: Milestone[] = [
     accent: 'from-sky-400/40 to-indigo-500/20',
   },
   {
-    when: '~3 yrs',
+    when: '1 yr',
     title: 'Full-stack contractor',
     where: 'Apple',
     description:

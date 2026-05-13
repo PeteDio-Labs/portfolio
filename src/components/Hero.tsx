@@ -22,7 +22,7 @@ export default function Hero() {
           className="text-5xl sm:text-7xl md:text-8xl font-semibold tracking-tighter leading-[0.95] text-balance animate-fade-up"
           style={{ animationDelay: '80ms' }}
         >
-          <span className="text-gradient">Pedro Delgadillo</span>
+          <span className="text-gradient">Pedro</span>
           <br />
           <span className="text-gradient-accent">builds agentic devops.</span>
         </h1>

@@ -34,7 +34,7 @@ const MILESTONES: Milestone[] = [
     title: 'Full-stack contractor',
     where: 'Apple',
     description:
-      'Shipped production features end-to-end inside Apple — React + TypeScript on the front, Node services on the back, working alongside teams that care deeply about polish, performance, and accessibility.',
+      'Shipped production features end-to-end inside Apple — React + TypeScript on the front, Java Spring Boot 3 services on the back, working alongside teams that care deeply about polish, performance, and accessibility.',
     Icon: Apple,
     accent: 'from-fuchsia-400/40 to-violet-500/20',
   },

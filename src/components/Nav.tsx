@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const LINKS = [
@@ -6,7 +7,6 @@ const LINKS = [
   { href: '#work', label: 'Work' },
   { href: '#journey', label: 'Journey' },
   { href: '#stack', label: 'Stack' },
-  { href: '#contact', label: 'Contact' },
 ];
 
 export default function Nav() {
@@ -23,47 +23,42 @@ export default function Nav() {
     <header className="fixed top-0 inset-x-0 z-50 px-4 pt-4">
       <nav
         className={cn(
-          'glass-nav mx-auto flex items-center justify-between gap-4 px-4 py-2 transition-all duration-500',
-          'max-w-xl',
+          'glass-nav mx-auto flex items-center justify-between gap-2 pl-2 pr-2 py-1.5 transition-all duration-500',
+          'w-fit max-w-[min(100%,_44rem)]',
           scrolled ? 'shadow-2xl' : ''
         )}
         aria-label="Primary"
       >
-        <a href="#top" className="flex items-center gap-2 px-2 py-1">
-          <span
-            aria-hidden="true"
-            className="inline-block h-6 w-6 rounded-full"
-            style={{
-              background:
-                'conic-gradient(from 200deg, #7c5cff, #3a8dff, #22d3ee, #7c5cff)',
-              boxShadow: '0 0 12px rgba(124, 92, 255, 0.6)',
-            }}
-          />
-          <span className="text-sm font-semibold tracking-tight">pedro</span>
+        <a
+          href="#top"
+          className="flex items-center gap-2 pl-2 pr-1 py-1 rounded-full hover:bg-white/5 transition"
+          aria-label="Home"
+        >
+          <span className="font-mono text-sm tracking-tight">
+            <span className="text-muted-foreground">~/</span>
+            <span className="text-foreground font-semibold">pedro</span>
+          </span>
         </a>
-        <ul className="hidden sm:flex items-center gap-1 text-sm">
+
+        <ul className="hidden md:flex items-center gap-0.5 text-sm">
           {LINKS.map((l) => (
             <li key={l.href}>
               <a
                 href={l.href}
-                className="px-3 py-1.5 rounded-full text-muted-foreground hover:text-foreground hover:bg-white/5 transition"
+                className="inline-flex px-3 py-1.5 rounded-full text-muted-foreground hover:text-foreground hover:bg-white/5 transition whitespace-nowrap"
               >
                 {l.label}
               </a>
             </li>
           ))}
         </ul>
+
         <a
           href="#contact"
-          className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-sm font-medium text-white hover:bg-white/20 transition"
-        >
-          Get in touch
-        </a>
-        <a
-          href="#contact"
-          className="sm:hidden inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-white"
+          className="inline-flex items-center gap-1 rounded-full bg-white text-black pl-3 pr-2 py-1.5 text-sm font-medium hover:bg-white/90 transition whitespace-nowrap"
         >
           Contact
+          <ArrowUpRight className="h-3.5 w-3.5" />
         </a>
       </nav>
     </header>
